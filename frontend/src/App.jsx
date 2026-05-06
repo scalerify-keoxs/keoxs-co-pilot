@@ -1451,9 +1451,9 @@ function App() {
         </div>
         <div style={{ display: 'flex', gap: '15px' }}>
           <a href="https://github.com/scalerify-keoxs/keoxs-co-pilot/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color='var(--accent)'} onMouseLeave={(e) => e.target.style.color='var(--text-secondary)'}>MIT License</a>
-          <a href="https://keoxs.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color='var(--accent)'} onMouseLeave={(e) => e.target.style.color='var(--text-secondary)'}>Documentation</a>
+          <a href="https://keoxs.com/docs.html" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color='var(--accent)'} onMouseLeave={(e) => e.target.style.color='var(--text-secondary)'}>Documentation</a>
           <a href="https://keoxs.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color='var(--accent)'} onMouseLeave={(e) => e.target.style.color='var(--text-secondary)'}>Community</a>
-          <a href="https://keoxs.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color='var(--accent)'} onMouseLeave={(e) => e.target.style.color='var(--text-secondary)'}>Contact</a>
+          <a href="https://scalerify.com/contact.html" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color='var(--accent)'} onMouseLeave={(e) => e.target.style.color='var(--text-secondary)'}>Contact</a>
           <a href="https://github.com/scalerify-keoxs/keoxs-co-pilot/issues/new" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 'bold' }}>🐞 Report a Bug</a>
         </div>
       </footer>
