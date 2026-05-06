@@ -835,10 +835,13 @@ function App() {
                     background: 'var(--bg-color)', 
                     border: '1px solid var(--border)',
                     color: 'var(--text-primary)',
-                    marginBottom: '15px',
+                    marginBottom: '10px',
                     resize: 'vertical'
                   }}
                 />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', fontSize: '11px', color: 'var(--text-secondary)' }}>
+                  <span>⚡ Powered by Google Gemini. Please do not share sensitive data.</span>
+                </div>
                 {history.length > 0 && (
                   <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '15px', fontStyle: 'italic' }}>
                     ✅ L'historique de vos {Math.min(history.length, 5)} dernières analyses sera automatiquement injecté pour aider l'IA.
@@ -852,6 +855,19 @@ function App() {
                 >
                   {isAiProcessing ? t.aiProcessing : t.aiBtn}
                 </button>
+              </div>
+
+              <div className="card" style={{ 
+                background: 'rgba(16, 163, 127, 0.05)', 
+                border: '1px dashed rgba(16, 163, 127, 0.25)', 
+                borderRadius: '8px',
+                padding: '15px 20px',
+                marginBottom: '20px',
+                fontSize: '13px',
+                lineHeight: '1.5',
+                color: 'var(--text-secondary)'
+              }}>
+                💼 Your TACoS is severely eating into your net margins. Are you planning an exit or struggling with cash flow? Request a free Turnaround Audit from our enterprise partner: <a href="https://scalerify.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontWeight: 'bold', textDecoration: 'underline' }}>Scalerify.</a>
               </div>
 
               {isAiProcessing && (
