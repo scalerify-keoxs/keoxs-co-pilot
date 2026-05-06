@@ -26,24 +26,42 @@ Unlike SaaS tools that upload your financial data to the cloud, **Keoxs Co-Pilot
 - **Backend**: Python, FastAPI, Pandas
 - **AI Integration**: Google Generative AI (Gemini)
 
-## 🚀 Quick Start (Development)
+## 🚀 Quick Start (One-Liner)
 
-### Prerequisites
-- Node.js (v16+)
-- Python (3.9+)
+The easiest way to install and run Keoxs Co-Pilot is to use our automated installation script. It will automatically clone the repository, install Python and Node.js dependencies, and create a 1-click startup script for you.
+
+### Windows (PowerShell)
+```powershell
+powershell -c "irm https://keoxs.com/install.ps1 | iex"
+```
+
+### macOS & Linux (Terminal)
+```bash
+curl -sSL https://keoxs.com/install.sh | bash
+```
+
+Once installed, simply open the newly created `keoxs-co-pilot` folder and run `start-keoxs.bat` (Windows) or `./start-keoxs.sh` (macOS/Linux).
+
+---
+
+## 🛠️ Manual Installation (For Developers)
+
+If you prefer to set up the environment manually, ensure you have **Node.js (v16+)** and **Python (3.9+)** installed.
 
 ### 1. Setup Backend
 ```bash
-cd backend
+git clone https://github.com/scalerify-keoxs/keoxs-co-pilot.git
+cd keoxs-co-pilot/backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: .\venv\Scripts\activate
 pip install -r requirements.txt
 python -m uvicorn api:app --host 127.0.0.1 --port 8001
 ```
 
 ### 2. Setup Frontend
+Open a new terminal window:
 ```bash
-cd frontend
+cd keoxs-co-pilot/frontend
 npm install
 npm run dev
 ```
