@@ -42,7 +42,7 @@ class AmazonReportParser:
         header_row = 0
         found_header = False
         for i, row in df.iterrows():
-            row_str = " ".join(row.astype(str)).lower()
+            row_str = " ".join([str(val) for val in row.values]).lower()
             if any(c in row_str for c in ['search term', 'terme de recherche', 'customer search', 'mot-clé', 'mot-cle', 'targeting', 'keyword']):
                 header_row = i
                 found_header = True
