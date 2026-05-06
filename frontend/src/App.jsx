@@ -73,7 +73,14 @@ const translations = {
     salesHeader: "Sales",
     acosHeader: "ACOS",
     actionHeader: "Action",
-    exportPdfBtn: "Export PDF Report"
+    exportPdfBtn: "Export PDF Report",
+    howToTitle: "How to Start an Analysis",
+    howToStep1: "1. Export Amazon STR",
+    howToStep1Desc: "Go to Amazon Ads > Measurement & Reporting > Sponsored Ads Reports. Generate a 'Search Term' report for Sponsored Products (last 30 days) as CSV or XLSX.",
+    howToStep2: "2. Drag & Drop",
+    howToStep2Desc: "Drag and drop your exported file into the Drop Zone above. Keoxs will instantly clean the data and calculate your PPC economics.",
+    howToStep3: "3. Apply & Scale",
+    howToStep3Desc: "Export bulk actions to optimize bids immediately, or go to the AI Brain tab to generate a custom executive strategic plan."
   },
   fr: {
     title: "Keoxs Co-Pilot",
@@ -145,7 +152,14 @@ const translations = {
     salesHeader: "Ventes",
     acosHeader: "ACOS",
     actionHeader: "Action",
-    exportPdfBtn: "Exporter le rapport PDF"
+    exportPdfBtn: "Exporter le rapport PDF",
+    howToTitle: "Comment lancer une analyse",
+    howToStep1: "1. Exporter le STR Amazon",
+    howToStep1Desc: "Allez dans Console Pubs > Rapports de Publicité. Générez un rapport 'Termes de recherche' pour Sponsored Products (30 derniers jours) au format CSV ou XLSX.",
+    howToStep2: "2. Glisser & Déposer",
+    howToStep2Desc: "Glissez votre fichier exporté dans la Drop Zone ci-dessus. Keoxs nettoiera les données et calculera vos optimisations instantanément.",
+    howToStep3: "3. Appliquer & Scaler",
+    howToStep3Desc: "Exportez les actions en masse pour optimiser vos enchères, ou allez dans l'onglet Cerveau IA pour générer votre plan stratégique."
   },
   it: {
     title: "Keoxs Co-Pilot",
@@ -214,7 +228,14 @@ const translations = {
     salesHeader: "Vendite",
     acosHeader: "ACOS",
     actionHeader: "Azione",
-    exportPdfBtn: "Esporta rapporto PDF"
+    exportPdfBtn: "Esporta rapporto PDF",
+    howToTitle: "Come avviare un'analisi",
+    howToStep1: "1. Esporta STR Amazon",
+    howToStep1Desc: "Vai su Console Ads > Report di pubblicità. Genera un report 'Termini di ricerca' per Sponsored Products (ultimi 30 giorni) in formato CSV o XLSX.",
+    howToStep2: "2. Trascina e Rilascia",
+    howToStep2Desc: "Trascina il tuo file esportato nella Drop Zone sopra. Keoxs pulirà i dati e calcolerà istantaneamente la tua redditività.",
+    howToStep3: "3. Applica e Scala",
+    howToStep3Desc: "Esporta le azioni in blocco per ottimizzare subito le offerte, o vai alla scheda Cervello IA per generare un piano strategico."
   },
   es: {
     title: "Keoxs Co-Pilot",
@@ -283,7 +304,14 @@ const translations = {
     salesHeader: "Ventas",
     acosHeader: "ACOS",
     actionHeader: "Acción",
-    exportPdfBtn: "Exportar informe PDF"
+    exportPdfBtn: "Exportar informe PDF",
+    howToTitle: "Cómo iniciar un análisis",
+    howToStep1: "1. Exportar STR de Amazon",
+    howToStep1Desc: "Vaya a Consola de anuncios > Informes publicitarios. Genere un informe de 'Términos de búsqueda' para Sponsored Products (últimos 30 días) en CSV o XLSX.",
+    howToStep2: "2. Arrastrar y Soltar",
+    howToStep2Desc: "Arrastre su archivo exportado a la Drop Zone de arriba. Keoxs limpiará los datos y calculará su rentabilidad de inmediato.",
+    howToStep3: "3. Aplicar y Escalar",
+    howToStep3Desc: "Exporte acciones en lote para optimizar pujas de inmediato, o vaya a la pestaña Cerebro IA para generar un plan estratégico."
   },
   de: {
     title: "Keoxs Co-Pilot",
@@ -352,7 +380,14 @@ const translations = {
     salesHeader: "Umsatz",
     acosHeader: "ACOS",
     actionHeader: "Aktion",
-    exportPdfBtn: "PDF-Bericht exportieren"
+    exportPdfBtn: "PDF-Bericht exportieren",
+    howToTitle: "So starten Sie eine Analyse",
+    howToStep1: "1. Amazon STR exportieren",
+    howToStep1Desc: "Gehen Sie zu Werbekonsole > Werbeberichte. Erstellen Sie einen 'Suchbegriff'-Bericht für Sponsored Products (letzte 30 Tage) als CSV oder XLSX.",
+    howToStep2: "2. Drag & Drop",
+    howToStep2Desc: "Ziehen Sie Ihre exportierte Datei in die Drop Zone oben. Keoxs bereinigt die Daten und berechnet sofort Ihre PPC-Ökonomie.",
+    howToStep3: "3. Anwenden & Skalieren",
+    howToStep3Desc: "Exportieren Sie Massenaktionen zur sofortigen Gebotsoptimierung oder nutzen Sie das KI-Gehirn für einen strategischen Plan."
   }
 };
 
@@ -841,6 +876,26 @@ function App() {
                   disabled={isProcessing}
                 />
                 <span>{isProcessing ? t.processing : t.dropZoneText}</span>
+              </div>
+
+              <div style={{ marginTop: '40px', textAlign: 'left', width: '100%' }}>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  📖 {t.howToTitle}
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
+                  <div className="card" style={{ padding: '20px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid var(--border)', borderRadius: '8px' }}>
+                    <h4 style={{ color: 'var(--accent)', marginBottom: '8px', fontSize: '1rem', fontWeight: 'bold' }}>{t.howToStep1}</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{t.howToStep1Desc}</p>
+                  </div>
+                  <div className="card" style={{ padding: '20px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid var(--border)', borderRadius: '8px' }}>
+                    <h4 style={{ color: 'var(--accent)', marginBottom: '8px', fontSize: '1rem', fontWeight: 'bold' }}>{t.howToStep2}</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{t.howToStep2Desc}</p>
+                  </div>
+                  <div className="card" style={{ padding: '20px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid var(--border)', borderRadius: '8px' }}>
+                    <h4 style={{ color: 'var(--accent)', marginBottom: '8px', fontSize: '1rem', fontWeight: 'bold' }}>{t.howToStep3}</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{t.howToStep3Desc}</p>
+                  </div>
+                </div>
               </div>
             </div>
           )}
