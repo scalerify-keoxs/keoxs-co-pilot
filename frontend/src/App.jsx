@@ -549,7 +549,7 @@ function App() {
   };
   
   useEffect(() => {
-    setLang(getBrowserLang());
+    setLang('en');
   }, []);
 
   useEffect(() => {
@@ -761,7 +761,7 @@ function App() {
         <button 
           className="theme-toggle" 
           onClick={toggleTheme} 
-          title={theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'}
+          title={theme === 'dark' ? (lang === 'fr' ? 'Passer en mode clair' : 'Switch to light mode') : (lang === 'fr' ? 'Passer en mode sombre' : 'Switch to dark mode')}
         >
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
@@ -773,7 +773,7 @@ function App() {
                   className="btn-secondary" 
                   onClick={() => { setResults(null); setShowHistoryPage(true); }} 
                   style={{ marginRight: '10px' }}
-                  title="Ouvrir le gestionnaire d'historique complet"
+                  title={lang === 'fr' ? "Ouvrir le gestionnaire d'historique complet" : "Open full history manager"}
                 >
                   📖 {lang === 'fr' ? 'Historique' : lang === 'en' ? 'History' : lang === 'es' ? 'Historial' : lang === 'it' ? 'Cronologia' : 'Verlauf'}
                 </button>
