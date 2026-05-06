@@ -57,7 +57,22 @@ const translations = {
     acosLabel: "ACOS",
     ordersLabel: "Orders",
     summaryTab: "ToDo List",
-    fullDataTab: "Full Audit"
+    fullDataTab: "Full Audit",
+    aiHistoryHelp: "The history of your last {count} analyses will be automatically injected to help the AI.",
+    noUrgencies: "No urgencies detected.",
+    noAdjustments: "No bid adjustments required.",
+    goldenNugget: "GOLDEN NUGGET 💎",
+    noAuditDataError: "⚠️ ERROR: No audit data received from server.",
+    exportingBtn: "⏳ Exporting...",
+    exportBtn: "📥 Export Bulk Actions",
+    termHeader: "Term",
+    campaignHeader: "Campaign",
+    clicksHeader: "Clicks",
+    ordersHeader: "Orders",
+    spendHeader: "Spend",
+    salesHeader: "Sales",
+    acosHeader: "ACOS",
+    actionHeader: "Action"
   },
   fr: {
     title: "Keoxs Co-Pilot",
@@ -113,7 +128,22 @@ const translations = {
     acosLabel: "ACOS",
     ordersLabel: "Commandes",
     summaryTab: "Actions",
-    fullDataTab: "Audit Complet"
+    fullDataTab: "Audit Complet",
+    aiHistoryHelp: "L'historique de vos {count} dernières analyses sera automatiquement injecté pour aider l'IA.",
+    noUrgencies: "Aucune urgence détectée.",
+    noAdjustments: "Aucun ajustement d'enchère requis.",
+    goldenNugget: "PÉPITE 💎",
+    noAuditDataError: "⚠️ ERREUR : Aucune donnée d'audit reçue du serveur.",
+    exportingBtn: "⏳ Exportation...",
+    exportBtn: "📥 Exporter les Actions",
+    termHeader: "Terme",
+    campaignHeader: "Campagne",
+    clicksHeader: "Clics",
+    ordersHeader: "Commandes",
+    spendHeader: "Dépenses",
+    salesHeader: "Ventes",
+    acosHeader: "ACOS",
+    actionHeader: "Action"
   },
   it: {
     title: "Keoxs Co-Pilot",
@@ -166,7 +196,22 @@ const translations = {
     aiContextLabel: "Contesto storico:",
     aiContextPlaceholder: "Es: Siamo in fase di scaling...",
     aiBtn: "Genera piano strategico",
-    aiProcessing: "L'IA sta analizzando la strategia..."
+    aiProcessing: "L'IA sta analizzando la strategia...",
+    aiHistoryHelp: "La cronologia delle tue ultime {count} analisi sarà iniettata automaticamente per aiutare l'IA.",
+    noUrgencies: "Nessuna urgenza rilevata.",
+    noAdjustments: "Nessuna regolazione dell'offerta richiesta.",
+    goldenNugget: "PEPITA 💎",
+    noAuditDataError: "⚠️ ERRORE: Nessun dato di audit ricevuto dal server.",
+    exportingBtn: "⏳ Esportazione...",
+    exportBtn: "📥 Esporta Azioni",
+    termHeader: "Termine",
+    campaignHeader: "Campagna",
+    clicksHeader: "Clic",
+    ordersHeader: "Ordini",
+    spendHeader: "Spesa",
+    salesHeader: "Vendite",
+    acosHeader: "ACOS",
+    actionHeader: "Azione"
   },
   es: {
     title: "Keoxs Co-Pilot",
@@ -219,7 +264,22 @@ const translations = {
     aiContextLabel: "Contexto histórico:",
     aiContextPlaceholder: "Ej: Estamos en fase de escalado...",
     aiBtn: "Generar Plan Estratégico",
-    aiProcessing: "La IA está analizando la estrategia..."
+    aiProcessing: "La IA está analizando la estrategia...",
+    aiHistoryHelp: "El historial de sus últimas {count} análisis se inyectará automáticamente para ayudar a la IA.",
+    noUrgencies: "No se han detectado urgencias.",
+    noAdjustments: "No se requieren ajustes de puja.",
+    goldenNugget: "PEPITA DE ORO 💎",
+    noAuditDataError: "⚠️ ERROR: No se recibieron datos de auditoría del servidor.",
+    exportingBtn: "⏳ Exportando...",
+    exportBtn: "📥 Exportar Acciones",
+    termHeader: "Término",
+    campaignHeader: "Campaña",
+    clicksHeader: "Clics",
+    ordersHeader: "Pedidos",
+    spendHeader: "Gasto",
+    salesHeader: "Ventas",
+    acosHeader: "ACOS",
+    actionHeader: "Acción"
   },
   de: {
     title: "Keoxs Co-Pilot",
@@ -272,7 +332,22 @@ const translations = {
     aiContextLabel: "Historischer Kontext:",
     aiContextPlaceholder: "Z.B. Wir befinden uns in der Skalierungsphase...",
     aiBtn: "Strategischen Plan erstellen",
-    aiProcessing: "KI analysiert die Strategie..."
+    aiProcessing: "KI analysiert die Strategie...",
+    aiHistoryHelp: "Der Verlauf Ihrer letzten {count} Analysen wird automatisch injiziert, um der KI zu helfen.",
+    noUrgencies: "Keine Dringlichkeiten erkannt.",
+    noAdjustments: "Keine Gebotsanpassungen erforderlich.",
+    goldenNugget: "GOLDSTÜCK 💎",
+    noAuditDataError: "⚠️ FEHLER: Keine Audit-Daten vom Server erhalten.",
+    exportingBtn: "⏳ Exportieren...",
+    exportBtn: "📥 Aktionen exportieren",
+    termHeader: "Suchbegriff",
+    campaignHeader: "Kampagne",
+    clicksHeader: "Klicks",
+    ordersHeader: "Bestellungen",
+    spendHeader: "Ausgaben",
+    salesHeader: "Umsatz",
+    acosHeader: "ACOS",
+    actionHeader: "Aktion"
   }
 };
 
@@ -844,7 +919,7 @@ function App() {
                 </div>
                 {history.length > 0 && (
                   <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '15px', fontStyle: 'italic' }}>
-                    ✅ L'historique de vos {Math.min(history.length, 5)} dernières analyses sera automatiquement injecté pour aider l'IA.
+                    {t.aiHistoryHelp.replace("{count}", Math.min(history.length, 5))}
                   </p>
                 )}
                 <button 
@@ -913,7 +988,7 @@ function App() {
                   ))}
                   {results.bleeding.length === 0 && (
                     <div className="empty-diagnostic">
-                      <p className="empty-msg">Aucune urgence détectée.</p>
+                      <p className="empty-msg">{t.noUrgencies}</p>
                     </div>
                   )}
                 </div>
@@ -946,7 +1021,7 @@ function App() {
                       </div>
                     ))
                   ) : (
-                    <p className="placeholder-text">Aucun ajustement d'enchère requis.</p>
+                    <p className="placeholder-text">{t.noAdjustments}</p>
                   )}
                 </div>
               </div>
@@ -962,7 +1037,7 @@ function App() {
                       <div key={idx} className="analysis-card success">
                         <div className="card-main">
                           <strong>{opp.term}</strong>
-                          <span className="badge-success">PEPITÉ 💎</span>
+                          <span className="badge-success">{t.goldenNugget}</span>
                         </div>
                         <div className="card-details">
                           <div className="metric-row">
@@ -994,27 +1069,27 @@ function App() {
                   <span className="file-tag">📄 {results.filename}</span>
                 </div>
                 <button className="btn-secondary" onClick={() => exportBulk(results)} disabled={isExporting} style={{ background: 'var(--accent)', color: 'white', border: 'none' }}>
-                  {isExporting ? "⏳ Exporting..." : "📥 Export Bulk Actions"}
+                  {isExporting ? t.exportingBtn : t.exportBtn}
                 </button>
               </div>
               
               {!results.full_data || results.full_data.length === 0 ? (
                 <div className="empty-diagnostic">
-                  <p className="error-msg">⚠️ ERREUR : Aucune donnée d'audit reçue du serveur.</p>
+                  <p className="error-msg">{t.noAuditDataError}</p>
                 </div>
               ) : (
                 <div className="table-container">
                   <table className="data-table">
                     <thead>
                       <tr>
-                        <th>Terme</th>
-                        <th>Campagne</th>
-                        <th>Clics</th>
-                        <th>Commandes</th>
-                        <th>Dépenses</th>
-                        <th>Ventes</th>
-                        <th>ACOS</th>
-                        <th>Action</th>
+                        <th>{t.termHeader}</th>
+                        <th>{t.campaignHeader}</th>
+                        <th>{t.clicksHeader}</th>
+                        <th>{t.ordersHeader}</th>
+                        <th>{t.spendHeader}</th>
+                        <th>{t.salesHeader}</th>
+                        <th>{t.acosHeader}</th>
+                        <th>{t.actionHeader}</th>
                       </tr>
                     </thead>
                     <tbody>
