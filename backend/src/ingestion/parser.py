@@ -143,6 +143,11 @@ class AmazonReportParser:
             'costo per clic (cpc)': 'CPC',
             'coste por clic (cpc)': 'CPC',
             
+            # Bids
+            'bid': 'Bid',
+            'ad group default bid': 'Ad Group Default Bid',
+            'ad group default bid (informational only)': 'Ad Group Default Bid',
+            
             # Metadata
             'match type': 'Match Type',
             'type de correspondance': 'Match Type',
@@ -201,7 +206,7 @@ class AmazonReportParser:
         """
         Nettoie les colonnes contenant des devises (ex: "$12.50" -> 12.50)
         """
-        currency_cols = ['Spend', 'Sales', 'CPC']
+        currency_cols = ['Spend', 'Sales', 'CPC', 'Bid', 'Ad Group Default Bid']
         for col in currency_cols:
             if col in df.columns:
                 # Sécurité : Si plusieurs colonnes ont le même nom, on prend la première
