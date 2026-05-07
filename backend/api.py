@@ -189,25 +189,44 @@ async def export_bulk(payload: ExportPayload):
         if not data:
             raise HTTPException(status_code=400, detail="Aucune donnée à exporter.")
             
-        df = pd.DataFrame(data)
-        
-        # Filtrer uniquement les lignes qui ont une action à réaliser (ignorer les Monitor)
-        action_df = df[~df['action'].str.contains("Monitor|En attente", case=False, na=False)].copy()
-        
-        if action_df.empty:
+        bulksheet_rows = []
+        for row in data:
+            action = row.get("action", "")
+            if "Monitor" in action or "En attente" in action or "Wait" in action:
+                continue
+                
+            entity = "Keyword"
+            operation = "Update"
+            state = "Enabled"
+            bid = row.get("suggested_bid", 0.0)
+            
+            if "EXCLUDE" in action.upper() or "EXCLURE" in action.upper():
+                entity = "Negative Keyword"
+                operation = "Create"
+                bid = ""  # No bidding value for negative creations
+                
+            bulksheet_rows.append({
+                "Product": "Sponsored Products",
+                "Entity": entity,
+                "Campaign Name (Informational only)": row.get("campaign", "Campaign"),
+                "Keyword Text": row.get("term"),
+                "Match Type": row.get("match_type", "EXACT").upper(),
+                "Bid": bid,
+                "State": state,
+                "Operation": operation
+            })
+            
+        if not bulksheet_rows:
             raise HTTPException(status_code=400, detail="Aucune action requise (tout est à Monitor).")
             
-        # Préparation d'un fichier plat CSV
-        # On renomme et ordonne les colonnes
-        export_df = action_df[["campaign", "term", "match_type", "action", "suggested_bid", "clicks", "spend", "sales", "acos"]]
-        export_df.columns = ["Campaign", "Keyword / Search Term", "Match Type", "Keoxs Action", "Suggested Bid", "Clicks", "Spend", "Sales", "ACOS (%)"]
+        export_df = pd.DataFrame(bulksheet_rows)
         
         output = io.StringIO()
         export_df.to_csv(output, index=False, sep=";")
         output.seek(0)
         
         headers = {
-            'Content-Disposition': 'attachment; filename="Keoxs_Bulk_Actions.csv"'
+            'Content-Disposition': 'attachment; filename="Keoxs_Bulk_Actions_Amazon.csv"'
         }
         return StreamingResponse(output, headers=headers, media_type='text/csv')
     except Exception as e:
