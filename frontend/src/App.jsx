@@ -849,6 +849,38 @@ function App() {
           </p>
           <p>{t.subtitle}</p>
           
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '10px', marginBottom: '25px' }}>
+            <span style={{ 
+              background: 'rgba(255, 255, 255, 0.05)', 
+              border: '1px solid var(--border)', 
+              borderRadius: '20px', 
+              padding: '4px 12px', 
+              fontSize: '0.78rem', 
+              fontWeight: '600', 
+              color: 'var(--text-secondary)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}>
+              Version 1.0.0
+            </span>
+            <span style={{ 
+              background: 'rgba(16, 185, 129, 0.08)', 
+              border: '1px solid rgba(16, 185, 129, 0.2)', 
+              borderRadius: '20px', 
+              padding: '4px 12px', 
+              fontSize: '0.78rem', 
+              fontWeight: '600', 
+              color: '#10b981',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', display: 'inline-block', boxShadow: '0 0 8px #10b981' }}></span>
+              {lang === 'fr' ? 'Vous êtes à jour' : 'Up to date'}
+            </span>
+          </div>
+          
           {isSuccess && !results && !showHistoryPage && (
             <div className="dropzone-card">
               <h2>{t.dropZoneTitle}</h2>
