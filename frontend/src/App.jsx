@@ -65,6 +65,7 @@ const translations = {
     noAuditDataError: "⚠️ ERROR: No audit data received from server.",
     exportingBtn: "⏳ Exporting...",
     exportBtn: "📥 Export Bulk Actions",
+    bulksheetHelp: "⚡ Formatted for direct import into your Amazon Ads console (Bulksheet)",
     termHeader: "Term",
     campaignHeader: "Campaign",
     clicksHeader: "Clicks",
@@ -144,6 +145,7 @@ const translations = {
     noAuditDataError: "⚠️ ERREUR : Aucune donnée d'audit reçue du serveur.",
     exportingBtn: "⏳ Exportation...",
     exportBtn: "📥 Exporter les Actions",
+    bulksheetHelp: "⚡ Prêt pour un import direct dans votre console Amazon Ads (Bulksheet)",
     termHeader: "Terme",
     campaignHeader: "Campagne",
     clicksHeader: "Clics",
@@ -1255,9 +1257,14 @@ function App() {
                   <h2>{t.fullDataTitle}</h2>
                   <span className="file-tag">📄 {results.filename}</span>
                 </div>
-                <button className="btn-secondary" onClick={() => exportBulk(results)} disabled={isExporting} style={{ background: 'var(--accent)', color: 'white', border: 'none' }}>
-                  {isExporting ? t.exportingBtn : t.exportBtn}
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+                  <button className="btn-secondary" onClick={() => exportBulk(results)} disabled={isExporting} style={{ background: 'var(--accent)', color: 'white', border: 'none' }}>
+                    {isExporting ? t.exportingBtn : t.exportBtn}
+                  </button>
+                  <small style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', opacity: 0.85, fontWeight: '500' }}>
+                    {t.bulksheetHelp}
+                  </small>
+                </div>
               </div>
               
               {!results.full_data || results.full_data.length === 0 ? (
