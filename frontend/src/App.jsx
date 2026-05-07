@@ -1108,7 +1108,7 @@ function App() {
                 lineHeight: '1.5',
                 color: 'var(--text-secondary)'
               }}>
-                💼 Your TACoS is severely eating into your net margins. Are you planning an exit or struggling with cash flow? Request a free Turnaround Audit from our enterprise partner: <a href="https://scalerify.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontWeight: 'bold', textDecoration: 'underline' }}>Scalerify.</a>
+                💼 Is your TACoS severely eating into your net margins? Are you planning an exit or struggling with cash flow? Request a free Turnaround Audit from our enterprise partner: <a href="https://scalerify.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontWeight: 'bold', textDecoration: 'underline' }}>Scalerify.</a>
               </div>
 
               {isAiProcessing && (
