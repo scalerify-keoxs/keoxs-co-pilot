@@ -156,3 +156,52 @@ def test_run_full_analysis_empty_term_handling():
     results = engine.run_full_analysis(df, lang="en")
     
     assert len(results["full_data"]) == 0
+
+def test_run_full_analysis_with_bulksheet_bids():
+    engine = UnitEconomicsEngine(sale_price=30.0, cogs=10.0, fba_fees=10.0)
+    
+    # Keyword 1: Has explicit Bid = 1.20. Suggested Bid should be Bid * 1.10 = 1.32
+    # Keyword 2: Has Bid = 0, should fall back to Ad Group Default Bid = 1.50 -> 1.50 * 0.70 = 1.05
+    # Keyword 3: Extreme bid (> 5.00) should be clipped to 5.00
+    df = pd.DataFrame([{
+        "Search Term": "keyword 1",
+        "Clicks": 10,
+        "Orders": 2,
+        "Spend": 10.0,
+        "Sales": 60.0,
+        "CPC": 1.0,
+        "Bid": 1.20,
+        "Ad Group Default Bid": 1.00,
+        "Match Type": "EXACT",
+        "Campaign": "Camp A"
+    }, {
+        "Search Term": "keyword 2",
+        "Clicks": 20,
+        "Orders": 1,
+        "Spend": 20.0,
+        "Sales": 15.0,
+        "CPC": 1.0,
+        "Bid": 0.0,
+        "Ad Group Default Bid": 1.50,
+        "Match Type": "EXACT",
+        "Campaign": "Camp A"
+    }, {
+        "Search Term": "extreme keyword",
+        "Clicks": 10,
+        "Orders": 2,
+        "Spend": 10.0,
+        "Sales": 60.0,
+        "CPC": 8.0,
+        "Bid": 8.00,
+        "Ad Group Default Bid": 1.00,
+        "Match Type": "EXACT",
+        "Campaign": "Camp A"
+    }])
+    
+    results = engine.run_full_analysis(df, lang="en")
+    full_data = results["full_data"]
+    
+    assert len(full_data) == 3
+    assert full_data[0]["suggested_bid"] == 1.32
+    assert full_data[1]["suggested_bid"] == 1.05
+    assert full_data[2]["suggested_bid"] == 5.00

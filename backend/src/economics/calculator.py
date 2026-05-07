@@ -217,18 +217,27 @@ class UnitEconomicsEngine:
             if term == "b08nwbrps8":
                 print(f"DEBUG: term={term}, clicks={clicks}, orders={orders}, action={action_audit}")
 
-            # Calcul du suggested_bid pour l'export (simplifié)
+            # Fallback to Ad Group Default Bid or CPC if Bid is missing/0
+            active_bid = row.get('Bid', 0.0)
+            if pd.isna(active_bid) or active_bid == 0.0:
+                active_bid = row.get('Ad Group Default Bid', cpc if cpc > 0 else 1.00)
+
+            # Calcul du suggested_bid basé sur l'enchère active
             suggested_bid = 0.0
-            if "BOOST" in action_audit or "BOOSTER" in action_audit:
-                suggested_bid = round(cpc * 1.10, 2)
+            if "BOOST" in action_audit or "BOOSTER" in action_audit or "SCALE" in action_audit:
+                suggested_bid = round(active_bid * 1.10, 2)
             elif "CURB" in action_audit or "BRIDER" in action_audit:
-                suggested_bid = round(cpc * 0.70, 2)
+                suggested_bid = round(active_bid * 0.70, 2)
             elif "HARVEST" in action_audit or "RÉCOLTER" in action_audit:
-                suggested_bid = round(cpc * 1.10, 2)
+                suggested_bid = round(active_bid * 1.10, 2)
             elif "TEST" in action_audit or "TESTER" in action_audit:
-                suggested_bid = round(cpc * 0.70, 2)
+                suggested_bid = round(active_bid * 0.70, 2)
             elif "EXCLUDE" in action_audit or "EXCLURE" in action_audit:
-                suggested_bid = 0.0 # Will be a Negative Keyword
+                suggested_bid = 0.0
+
+            # Limites de sécurité de l'enchère [0.02, 5.00]
+            if suggested_bid > 0:
+                suggested_bid = round(max(0.02, min(5.00, suggested_bid)), 2)
 
             results["full_data"].append({
                 "term": term,
